@@ -3,15 +3,15 @@
 @section('styles')
 <style>
     .form-input {
-        @apply w-full px-4 py-3 rounded-lg bg-gray-100 border-gray-200 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200;
+        @apply w-full px-4 py-3 rounded-lg bg-gray-100 border-gray-200 focus:bg-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200;
     }
     
     .auth-container {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23b2c5f8' fill-opacity='0.15'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fed7aa' fill-opacity='0.15'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     
     .animated-bg {
-        background: linear-gradient(-45deg, #C7D2FE, #A5B4FC, #818CF8, #6366F1);
+        background: linear-gradient(-45deg, #fed7aa, #fdba74, #fb923c, #ea580c);
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
     }
@@ -26,6 +26,15 @@
         100% {
             background-position: 0% 50%;
         }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+    }
+
+    .float-animation {
+        animation: float 4s ease-in-out infinite;
     }
 </style>
 @endsection
@@ -53,7 +62,7 @@
             
             <!-- Social Login -->
             <div class="space-y-4 mb-8">
-                <a href="{{ url('auth/google') }}" class="flex items-center justify-center w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <a href="{{ url('auth/google') }}" class="flex items-center justify-center w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-50 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
                     </svg>
@@ -82,7 +91,7 @@
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input id="email" name="email" type="email" autocomplete="email" required 
-                           class="form-input @error('email') border-red-500 @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                           class="form-input @error('email') border-red-500 @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" 
                            value="{{ old('email') }}" 
                            placeholder="name@example.com">
                 </div>
@@ -90,13 +99,13 @@
                 <div>
                     <div class="flex items-center justify-between mb-1">
                         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                        <a href="#" class="text-sm text-blue-600 hover:text-blue-500 hover:underline">
+                        <a href="#" class="text-sm text-orange-600 hover:text-orange-500 hover:underline">
                             Forgot password?
                         </a>
                     </div>
                     <div class="relative">
                         <input id="password" name="password" type="password" autocomplete="current-password" required 
-                               class="form-input @error('password') border-red-500 @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                               class="form-input @error('password') border-red-500 @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" 
                                placeholder="Your password">
                         <button type="button" id="toggle-password" class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600">
                             <svg class="w-5 h-5" id="eye-closed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,7 +121,7 @@
                 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
                         <label for="remember" class="ml-2 block text-sm text-gray-700">
                             Remember me
                         </label>
@@ -120,7 +129,7 @@
                 </div>
                 
                 <div>
-                    <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200">
+                    <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-700 to-amber-600 hover:from-orange-800 hover:to-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-200 transform hover:scale-[1.02]">
                         Sign In
                     </button>
                 </div>
@@ -129,7 +138,7 @@
             <div class="mt-8 text-center">
                 <p class="text-sm text-gray-600">
                     Don't have an account? 
-                    <a href="{{ route('register') }}" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">
+                    <a href="{{ route('register') }}" class="font-medium text-orange-600 hover:text-orange-500 hover:underline">
                         Register now
                     </a>
                 </p>
@@ -138,34 +147,40 @@
     </div>
     
     <!-- Right Side with Illustration -->
-    <div class="hidden lg:flex lg:w-1/2 animated-bg items-center justify-center p-12">
-        <div class="max-w-lg text-center">
-            <svg class="h-64 w-auto text-white mx-auto opacity-75" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+    <div class="hidden lg:flex lg:w-1/2 animated-bg items-center justify-center p-12 relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="absolute top-10 right-10 w-32 h-32 bg-white bg-opacity-10 rounded-full"></div>
+        <div class="absolute bottom-20 left-10 w-24 h-24 bg-white bg-opacity-10 rounded-full"></div>
+        <div class="absolute top-1/2 right-1/4 w-16 h-16 bg-white bg-opacity-10 rounded-full"></div>
+        
+        <div class="max-w-lg text-center relative z-10">
+            <!-- SVG Illustration -->
+            <div class="float-animation mb-8">
+                <img src="{{ asset('images/Login-amico.svg') }}" alt="Login Illustration" class="h-72 w-auto mx-auto drop-shadow-xl">
+            </div>
             
-            <h1 class="text-4xl font-bold text-white mb-6 mt-8">Welcome Back!</h1>
-            <p class="text-lg text-indigo-100">Sign in to access your account dashboard, track your orders, and manage your profile.</p>
+            <h1 class="text-4xl font-bold text-white mb-6">Welcome Back!</h1>
+            <p class="text-lg text-orange-100">Sign in to access your account dashboard, track your orders, and manage your profile.</p>
             
             <div class="grid grid-cols-2 gap-6 mt-10">
-                <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-xl p-6 text-left">
-                    <div class="rounded-full bg-indigo-600 w-12 h-12 flex items-center justify-center mb-4">
+                <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-xl p-6 text-left border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300">
+                    <div class="rounded-full bg-orange-600 w-12 h-12 flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                         </svg>
                     </div>
                     <h3 class="font-bold text-white text-lg mb-1">Track Orders</h3>
-                    <p class="text-indigo-100">Check the status and details of your orders</p>
+                    <p class="text-orange-100">Check the status and details of your orders</p>
                 </div>
                 
-                <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-xl p-6 text-left">
-                    <div class="rounded-full bg-indigo-600 w-12 h-12 flex items-center justify-center mb-4">
+                <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-xl p-6 text-left border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300">
+                    <div class="rounded-full bg-orange-600 w-12 h-12 flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                     <h3 class="font-bold text-white text-lg mb-1">Member Benefits</h3>
-                    <p class="text-indigo-100">Exclusive discounts and rewards for members</p>
+                    <p class="text-orange-100">Exclusive discounts and rewards for members</p>
                 </div>
             </div>
         </div>
