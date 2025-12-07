@@ -293,28 +293,30 @@
     /* animasi */
 
     .ocean { 
-        height: 60%;
-        width:100%;
-        position:absolute;
-        bottom:0;
-        left:0;
+        height: 150px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
         background: #c2410c;
+        overflow: hidden;
     }
 
     .wave {
-        background: url({{ asset('images/wave.svg') }}) repeat-x; 
+        background: url('{{ asset('images/wave.svg') }}?v={{ time() }}') repeat-x;
+        background-size: 1600px 198px;
         position: absolute;
-        top: -198px;
+        top: -48px;
         width: 6400px;
         height: 198px;
-        animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+        animation: wave 15s linear infinite;
         transform: translate3d(0, 0, 0);
     }
 
     .wave:nth-of-type(2) {
-        top: -175px;
-        animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
-        opacity: 1;
+        top: -30px;
+        animation: wave 15s linear -7s infinite;
+        opacity: 0.5;
     }
 
     @keyframes wave {
@@ -1031,11 +1033,11 @@
 </section>
 
     <!-- CTA Section with Wave Background -->
-    <section class="relative overflow-hidden min-h-[500px] py-20">
+    <section class="relative overflow-hidden min-h-[500px] py-20 bg-orange-700">
         <!-- Wave Background -->
-        <div class="ocean">
-            <div class="wave"></div>
-            <div class="wave"></div>
+        <div class="ocean" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 150px; background: #c2410c; overflow: hidden;">
+            <div class="wave" style="background: url('{{ asset('images/wave.svg') }}?v={{ time() }}') repeat-x; background-size: 1600px 198px; position: absolute; top: -48px; width: 6400px; height: 198px; animation: wave 15s linear infinite;"></div>
+            <div class="wave" style="background: url('{{ asset('images/wave.svg') }}?v={{ time() }}') repeat-x; background-size: 1600px 198px; position: absolute; top: -30px; width: 6400px; height: 198px; animation: wave 15s linear -7s infinite; opacity: 0.5;"></div>
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
