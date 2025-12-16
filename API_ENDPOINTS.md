@@ -608,28 +608,6 @@ Authorization: Bearer {token}
 }
 ```
 
-### 3. Receivables Report
-
-```http
-GET /api/reports/receivables
-Authorization: Bearer {token}
-
-# Response 200
-{
-    "success": true,
-    "data": {
-        "summary": {
-            "total_receivables": 250000000,
-            "current": 150000000,
-            "overdue": 100000000,
-            "customers_with_debt": 25
-        },
-        "aging": [...],
-        "top_debtors": [...]
-    }
-}
-```
-
 ### 4. Top Products
 
 ```http
@@ -692,13 +670,6 @@ curl -X POST http://localhost:8000/api/stock/in \
   }'
 ```
 
-### Example: Get Payment Terms
-
-```bash
-curl -X GET "http://localhost:8000/api/payment-terms?status=pending" \
-  -H "Authorization: Bearer YOUR_TOKEN"
-```
-
 ---
 
 ## 📝 API ROUTES FILE
@@ -711,8 +682,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StockController;
 use App\Http\Controllers\Api\DeliveryNoteController;
-use App\Http\Controllers\Api\PaymentTermController;
-use App\Http\Controllers\Api\CustomerCreditController;
+
 use App\Http\Controllers\Api\PriceController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\ReportController;
@@ -754,8 +724,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('reports')->group(function () {
         Route::get('/sales', [ReportController::class, 'sales']);
         Route::get('/inventory', [ReportController::class, 'inventory']);
-        Route::get('/receivables', [ReportController::class, 'receivables']);
-        Route::get('/aging', [ReportController::class, 'aging']);
+
         Route::get('/top-products', [ReportController::class, 'topProducts']);
         Route::get('/top-customers', [ReportController::class, 'topCustomers']);
     });
@@ -790,24 +759,13 @@ Delivery Notes:
 - [ ] Confirm delivery with signature
 - [ ] Print delivery note PDF
 
-Payment Terms:
-- [ ] List payment terms
-- [ ] Get payment term detail
-- [ ] Record full payment
-- [ ] Record partial payment
-- [ ] Get overdue payments
 
-Customer Credit:
-- [ ] Get customer credit info
-- [ ] Adjust credit limit
-- [ ] Get customer debts
-- [ ] Check credit before purchase
+
 
 Reports:
 - [ ] Generate sales report
 - [ ] Generate inventory report
-- [ ] Generate receivables report
-- [ ] Get aging report
+
 - [ ] Get top products
 - [ ] Get top customers
 ```

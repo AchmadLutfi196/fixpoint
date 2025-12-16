@@ -6,7 +6,7 @@ use App\Filament\Resources\OrderResource\Pages;
 use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Product;
-use App\Models\PaymentTerm;
+
 use App\Services\PriceCalculator;
 use App\Services\StockManager;
 use Filament\Forms;
@@ -170,10 +170,7 @@ class OrderResource extends Resource
                     ->schema([
                         Grid::make(3)
                             ->schema([
-                                Select::make('payment_term_id')
-                                    ->label('Payment Terms')
-                                    ->relationship('paymentTerm', 'name')
-                                    ->preload(),
+
                                     
                                 Select::make('payment_status')
                                     ->options([
@@ -314,10 +311,7 @@ class OrderResource extends Resource
                     ->sortable()
                     ->toggleable(),
                     
-                TextColumn::make('paymentTerm.name')
-                    ->label('Payment Terms')
-                    ->placeholder('Cash')
-                    ->toggleable(isToggledHiddenByDefault: true),
+
                     
                 TextColumn::make('created_at')
                     ->label('Created')

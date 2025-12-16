@@ -7,7 +7,7 @@ use App\Filament\Widgets\OutOfStockProducts;
 use App\Filament\Widgets\SalesChart; 
 use App\Filament\Widgets\StoreStatsOverview;
 use App\Filament\Widgets\LatestOrders;
-use App\Filament\Widgets\CreditDashboardWidget;
+
 use App\Filament\Widgets\AdvancedAnalyticsChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -58,7 +58,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 StoreStatsOverview::class,
                 SalesChart::class,
-                CreditDashboardWidget::class,
+
                 AdvancedAnalyticsChart::class,
                 LatestOrders::class,
                 LowStockAlert::class,

@@ -5,7 +5,7 @@ namespace App\Filament\Widgets;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\StockMovement;
-use App\Models\PaymentTerm;
+
 use Filament\Widgets\ChartWidget;
 use Illuminate\Support\Carbon;
 
@@ -37,17 +37,6 @@ class AdvancedAnalyticsChart extends ChartWidget
                 ->sum('quantity');
         })->values();
         
-        // Receivables data
-        $receivablesData = $months->map(function (Carbon $month) {
-            return PaymentTerm::whereYear('due_date', $month->year)
-                ->whereMonth('due_date', $month->month)
-                ->whereNotIn('status', ['paid', 'cancelled'])
-                ->sum('amount') - PaymentTerm::whereYear('due_date', $month->year)
-                ->whereMonth('due_date', $month->month)
-                ->whereNotIn('status', ['paid', 'cancelled'])
-                ->sum('paid_amount');
-        })->values();
-        
         $labels = $months->map(function (Carbon $month) {
             return $month->format('M Y');
         })->values();
@@ -68,16 +57,12 @@ class AdvancedAnalyticsChart extends ChartWidget
                     'backgroundColor' => 'rgba(16, 185, 129, 0.1)',
                     'yAxisID' => 'y1',
                 ],
-                [
-                    'label' => 'Outstanding Receivables (Rp)',
-                    'data' => $receivablesData->toArray(),
-                    'borderColor' => 'rgb(245, 101, 101)',
-                    'backgroundColor' => 'rgba(245, 101, 101, 0.1)',
-                    'yAxisID' => 'y',
-                ],
             ],
             'labels' => $labels->toArray(),
         ];
+
+        
+
     }
     
     protected function getType(): string
