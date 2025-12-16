@@ -338,124 +338,142 @@
 @endsection
 
 @section('content')
-    <!-- Hero Section with Parallax Effect -->
-    <div class="relative overflow-hidden h-screen">
-        @if(isset($homeBanner) && $homeBanner->banner_image && !empty($homeBanner->banner_image))
-            <!-- Banner Image Background -->
-            <div class="absolute inset-0 overflow-hidden">
-                <!-- Product Banner Image from Admin -->
-                <img src="{{ Storage::url($homeBanner->banner_image) }}" alt="{{ $homeBanner->banner_title ?? 'Fixpoint Material Bangunan' }}" 
-                     class="w-full h-full object-cover object-center"
-                     onerror="this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-r from-orange-800 to-amber-700\'></div>'">
-                
-                <!-- Gradient Overlay for better text readability -->
-                <div class="absolute inset-0 bg-gradient-to-r from-orange-900/70 to-yellow-900/60"></div>
-            </div>
-        @else
-            <!-- Fallback to Original Animated Background Elements -->
-            <div class="absolute inset-0 bg-gradient-to-r from-orange-800 to-amber-700 overflow-hidden ripple-bg">
-                <!-- Animated Blobs -->
-                <div class="hero-blob bg-orange-600 w-96 h-96 top-1/4 left-1/4 animate-blob animation-delay-2000"></div>
-                <div class="hero-blob bg-amber-600 w-96 h-96 top-1/3 right-1/4 animate-blob animation-delay-4000"></div>
-                <div class="hero-blob bg-amber-700 w-96 h-96 bottom-1/4 left-1/2 animate-blob"></div>
-                
-                <!-- Abstract Lines -->
-                <svg class="absolute w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0,50 Q25,30 50,50 T100,50" stroke="white" stroke-width="0.5" fill="none"/>
-                    <path d="M0,30 Q35,70 70,30 T100,30" stroke="white" stroke-width="0.5" fill="none"/>
-                    <path d="M0,70 Q35,30 70,70 T100,70" stroke="white" stroke-width="0.5" fill="none"/>
-                </svg>
-            </div>
-        @endif
+    <!-- Hero Section - Modern Split Layout -->
+    <div class="relative overflow-hidden min-h-screen bg-gradient-to-br from-orange-800 via-orange-700 to-amber-600">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Animated Blobs -->
+            <div class="hero-blob bg-orange-500 w-96 h-96 top-1/4 left-1/4 animate-blob animation-delay-2000"></div>
+            <div class="hero-blob bg-amber-500 w-96 h-96 top-1/3 right-1/4 animate-blob animation-delay-4000"></div>
+            <div class="hero-blob bg-amber-600 w-80 h-80 bottom-1/4 left-1/2 animate-blob"></div>
+            
+            <!-- Abstract Lines -->
+            <svg class="absolute w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,50 Q25,30 50,50 T100,50" stroke="white" stroke-width="0.3" fill="none"/>
+                <path d="M0,30 Q35,70 70,30 T100,30" stroke="white" stroke-width="0.3" fill="none"/>
+                <path d="M0,70 Q35,30 70,70 T100,70" stroke="white" stroke-width="0.3" fill="none"/>
+            </svg>
+        </div>
 
-        <div class="relative h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <div class="inline-block mb-6 animate-float">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-white bg-opacity-20 backdrop-blur-sm text-white text-sm font-medium">
-                        <span class="mr-2 relative">
-                            <span class="absolute inset-0 animate-ping rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        Koleksi Terbaru 2025
-                    </span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
-                    <span class="block mb-2">Material Bangunan</span>
-                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">Terlengkap di Fixpoint</span>
-                </h1>
-                
-                <p class="mt-6 max-w-lg mx-auto text-xl text-orange-100">
-                    Temukan berbagai material bangunan berkualitas tinggi untuk proyek konstruksi dan renovasi Anda
-                </p>
-                
-                <div class="mt-10 flex flex-wrap justify-center gap-4">
-                    <a href="{{ route('shop') }}" 
-                       class="relative inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-orange-800 bg-white hover:bg-orange-50 md:py-4 md:text-lg md:px-10 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group overflow-hidden">
-                        <span class="relative z-10">Belanja Sekarang</span>
-                        <span class="absolute inset-0 bg-white z-0"></span>
-                        <span class="absolute inset-0 bg-gradient-to-r from-orange-100 to-yellow-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 z-0"></span>
-                    </a>
-                    
-                    <a href="#featured" 
-                       class="relative inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-white border-2 border-white border-opacity-30 hover:border-opacity-70 md:py-4 md:text-lg md:px-10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
-                        <span>Lihat Koleksi</span>
-                        <svg class="ml-2 w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                        </svg>
-                    </a>
+        <div class="relative h-full flex items-center px-4 sm:px-6 lg:px-8 py-20 lg:py-0 lg:min-h-screen">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Content -->
+                    <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="inline-block mb-6 animate-float">
+                            <span class="inline-flex items-center px-4 py-2 rounded-full bg-white bg-opacity-20 backdrop-blur-sm text-white text-sm font-medium border border-white border-opacity-20">
+                                <span class="mr-2 relative">
+                                    <span class="absolute inset-0 animate-ping rounded-full bg-green-400 opacity-75"></span>
+                                    <span class="relative rounded-full h-2 w-2 bg-green-500 block"></span>
+                                </span>
+                                Koleksi Terbaru 2025
+                            </span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                            <span class="block mb-2">Material Bangunan</span>
+                            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-300">Terlengkap di Fixpoint</span>
+                        </h1>
+                        
+                        <p class="mt-6 max-w-lg mx-auto lg:mx-0 text-xl text-orange-100 leading-relaxed">
+                            Temukan berbagai material bangunan berkualitas tinggi untuk proyek konstruksi dan renovasi Anda dengan harga terbaik
+                        </p>
+                        
+                        <div class="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
+                            <a href="{{ route('shop') }}" 
+                               class="relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl text-orange-800 bg-white hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl group overflow-hidden">
+                                <span class="relative z-10 flex items-center">
+                                    Belanja Sekarang
+                                    <svg class="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </span>
+                                <span class="absolute inset-0 bg-gradient-to-r from-orange-100 to-yellow-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                            </a>
+                            
+                            <a href="#featured" 
+                               class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl text-white border-2 border-white border-opacity-40 hover:border-opacity-80 hover:bg-white hover:bg-opacity-10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+                                <span>Lihat Koleksi</span>
+                                <svg class="ml-2 w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Stats Mini -->
+                        <div class="mt-12 grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
+                            <div class="text-center lg:text-left">
+                                <div class="text-2xl sm:text-3xl font-bold text-white">500+</div>
+                                <div class="text-sm text-orange-200">Produk</div>
+                            </div>
+                            <div class="text-center lg:text-left">
+                                <div class="text-2xl sm:text-3xl font-bold text-white">15K+</div>
+                                <div class="text-sm text-orange-200">Pelanggan</div>
+                            </div>
+                            <div class="text-center lg:text-left">
+                                <div class="text-2xl sm:text-3xl font-bold text-white">25+</div>
+                                <div class="text-sm text-orange-200">Tahun</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Content - SVG Illustration -->
+                    <div class="hidden lg:flex justify-center items-center" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="relative w-full max-w-lg">
+                            <!-- Glow Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-400 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+                            
+                            <!-- SVG Illustration -->
+                            <img src="{{ asset('images/Bricklayer-pana.svg') }}" 
+                                 alt="Material Bangunan Fixpoint" 
+                                 class="relative w-full h-auto drop-shadow-2xl animate-float">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
         <!-- Animated Scroll Indicator -->
         <div class="scroll-indicator">
-            <a href="#featured" class="text-white flex flex-col items-center">
-                <span class="text-sm mb-2 animate-pulse">Scroll</span>
-                <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
+            <a href="#featured" class="text-white flex flex-col items-center hover:scale-110 transition-transform duration-300">
+                <span class="text-sm mb-2 animate-pulse font-medium">Scroll</span>
+                <div class="w-8 h-12 rounded-full border-2 border-white border-opacity-50 flex justify-center pt-2">
+                    <div class="w-1.5 h-3 bg-white rounded-full animate-bounce"></div>
+                </div>
             </a>
         </div>
     </div>
 
     <!-- Benefits Bar with Floating Animation -->
-    <div class="relative bg-gradient-to-b from-white to-gray-50 py-20 -mt-12 z-10 overflow-hidden">
-        <!-- Decorative SVG Background -->
-        <div class="absolute right-0 bottom-0 opacity-5 transform translate-x-1/4 translate-y-1/4 pointer-events-none">
-            <img src="{{ asset('images/Construction truck-amico.svg') }}" 
-                 alt="" 
-                 class="w-96 h-96 object-contain">
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Mengapa Memilih <span class="text-orange-600">Kami?</span></h2>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
-                @foreach([
-                    ['icon' => 'check', 'title' => 'Kualitas Premium', 'desc' => 'Material terbaik', 'color' => 'blue', 'bgGradient' => 'from-blue-500 to-blue-600', 'delay' => 0],
-                    ['icon' => 'currency-dollar', 'title' => 'Harga Terbaik', 'desc' => 'Garansi harga termurah', 'color' => 'green', 'bgGradient' => 'from-green-500 to-green-600', 'delay' => 100],
-                    ['icon' => 'truck', 'title' => 'Gratis Ongkir', 'desc' => 'Dalam Kota', 'color' => 'purple', 'bgGradient' => 'from-purple-500 to-purple-600', 'delay' => 200],
-                    ['icon' => 'shield', 'title' => 'Garansi 1 Tahun', 'desc' => 'Tanpa ribet', 'color' => 'orange', 'bgGradient' => 'from-orange-500 to-orange-600', 'delay' => 300]
-                ] as $benefit)
-                <div class="group benefit-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-{{ $benefit['color'] }}-200 hover:-translate-y-1" 
-                     data-aos="fade-up" data-aos-delay="{{ $benefit['delay'] }}">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="benefit-icon bg-gradient-to-br {{ $benefit['bgGradient'] }} p-4 rounded-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M{{ $benefit['icon'] === 'check' ? '5 13l4 4L19 7' : 
-                                    ($benefit['icon'] === 'currency-dollar' ? '12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z' : 
-                                    ($benefit['icon'] === 'truck' ? '20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' : 
-                                    '9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z')) }}"></path>
+    <div class="relative z-20 -mt-24 px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 transform hover:-translate-y-1 transition-transform duration-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    @foreach([
+                        ['icon' => 'check', 'title' => 'Kualitas Premium', 'desc' => 'Material terbaik', 'color' => 'orange', 'delay' => 0],
+                        ['icon' => 'currency-dollar', 'title' => 'Harga Terbaik', 'desc' => 'Garansi harga termurah', 'color' => 'green', 'delay' => 100],
+                        ['icon' => 'truck', 'title' => 'Gratis Ongkir', 'desc' => 'Dalam Kota', 'color' => 'blue', 'delay' => 200],
+                        ['icon' => 'shield', 'title' => 'Garansi 1 Tahun', 'desc' => 'Tanpa ribet', 'color' => 'red', 'delay' => 300]
+                    ] as $benefit)
+                    <div class="flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="{{ $benefit['delay'] }}">
+                        <div class="benefit-icon bg-{{ $benefit['color'] }}-50 p-4 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="h-8 w-8 text-{{ $benefit['color'] }}-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                @if($benefit['icon'] == 'check')
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                @elseif($benefit['icon'] == 'currency-dollar')
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                @elseif($benefit['icon'] == 'truck')
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                @elseif($benefit['icon'] == 'shield')
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                @endif
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-{{ $benefit['color'] }}-600 transition-colors">{{ $benefit['title'] }}</h3>
-                        <p class="text-gray-500 text-sm">{{ $benefit['desc'] }}</p>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">{{ $benefit['title'] }}</h3>
+                        <p class="text-sm text-gray-500">{{ $benefit['desc'] }}</p>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -596,93 +614,44 @@
     </section>
 
     <!-- Trending Collection Banner -->
-    <section class="relative py-20 bg-white overflow-hidden">
+    <section class="relative py-16 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative bg-gradient-to-br from-orange-700 via-orange-600 to-amber-500 rounded-3xl overflow-hidden shadow-2xl">
-                <!-- Decorative Background Elements -->
-                <div class="absolute inset-0 opacity-10">
-                    <div class="absolute right-0 top-0 -mt-16 -mr-16">
-                        <svg width="300" height="300" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                            <path fill="currentColor" d="M42,-72.2C54.9,-65.2,66,-55.3,76.4,-42.8C86.9,-30.2,96.6,-15.1,95.9,-0.4C95.2,14.3,84,28.6,73.3,42.3C62.6,56,52.4,69.1,39,76.3C25.7,83.6,9.1,85,-5.9,80.9C-20.9,76.9,-34.4,67.5,-46.6,56.8C-58.8,46.1,-69.7,34.1,-76.7,19.4C-83.8,4.7,-87.1,-12.6,-82.1,-27.5C-77.1,-42.5,-63.8,-55,-48.7,-61.4C-33.5,-67.9,-16.7,-68.2,-0.3,-67.7C16.2,-67.1,32.4,-65.7,42,-72.2Z" transform="translate(100 100)" />
-                        </svg>
-                    </div>
-                    <div class="absolute left-0 bottom-0 -mb-20 -ml-20">
-                        <svg width="250" height="250" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                            <path fill="currentColor" d="M39.9,-65.7C52.4,-59.5,63.5,-50.1,71.3,-38C79.1,-25.9,83.6,-11.1,82.1,3C80.6,17.1,73.2,30.5,63.5,40.9C53.8,51.3,41.9,58.7,29.1,64.1C16.3,69.5,2.6,72.9,-11.1,72.4C-24.8,71.9,-38.5,67.5,-50.7,60.1C-62.9,52.7,-73.6,42.3,-78.8,29.7C-84,17.1,-83.7,2.3,-80.4,-11.8C-77.1,-25.9,-70.8,-39.3,-60.6,-48.5C-50.4,-57.7,-36.3,-62.7,-23,-66.7C-9.7,-70.7,2.8,-73.7,15.9,-73.3C29,-72.9,42.7,-69.1,39.9,-65.7Z" transform="translate(100 100)" />
-                        </svg>
-                    </div>
+            <div class="relative bg-gradient-to-r from-orange-700 to-amber-600 rounded-3xl overflow-hidden">
+                <div class="absolute right-0 top-0 -mt-20 -mr-20">
+                    <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="text-white opacity-10">
+                        <path fill="currentColor" d="M42,-72.2C54.9,-65.2,66,-55.3,76.4,-42.8C86.9,-30.2,96.6,-15.1,95.9,-0.4C95.2,14.3,84,28.6,73.3,42.3C62.6,56,52.4,69.1,39,76.3C25.7,83.6,9.1,85,-5.9,80.9C-20.9,76.9,-34.4,67.5,-46.6,56.8C-58.8,46.1,-69.7,34.1,-76.7,19.4C-83.8,4.7,-87.1,-12.6,-82.1,-27.5C-77.1,-42.5,-63.8,-55,-48.7,-61.4C-33.5,-67.9,-16.7,-68.2,-0.3,-67.7C16.2,-67.1,32.4,-65.7,42,-72.2Z" transform="translate(100 100)" />
+                    </svg>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-3 items-center relative z-10">
-                    <!-- Left: Bricklayer SVG Illustration -->
-                    <div class="hidden lg:flex items-center justify-center p-8" data-aos="fade-right" data-aos-delay="100">
-                        <img src="{{ asset('images/Bricklayer-pana.svg') }}" 
-                             alt="Bricklayer Illustration" 
-                             class="w-64 h-64 object-contain drop-shadow-lg transform hover:scale-105 transition-transform duration-500">
-                    </div>
-                    
-                    <!-- Center: Content -->
-                    <div class="p-10 lg:p-12 text-center lg:text-left" data-aos="fade-up" data-aos-delay="200">
-                        <span class="inline-block px-4 py-1.5 bg-white/20 text-white rounded-full text-sm font-semibold mb-4 backdrop-blur-sm border border-white/10">
-                            ✨ KOLEKSI TERBARU
-                        </span>
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
-                            Koleksi Terbaik<br><span class="text-orange-200">2025</span>
-                        </h2>
-                        <p class="text-orange-100/90 mb-8 text-lg max-w-md mx-auto lg:mx-0">
-                            Material bangunan premium dengan kualitas unggulan untuk proyek konstruksi Anda.
-                        </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 items-center">
+                    <div class="p-12 md:p-16" data-aos="fade-right">
+                        <span class="inline-block px-3 py-1 bg-white bg-opacity-20 text-white rounded-full text-sm font-semibold mb-4 backdrop-blur-sm">KOLEKSI TERBARU</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Koleksi Terbaik 2025</h2>
+                        <p class="text-orange-100 mb-8 text-lg">Material bangunan premium dengan kualitas unggulan untuk proyek konstruksi Anda.</p>
                         <a href="{{ route('shop', ['collection' => 'trending']) }}" 
-                           class="inline-flex items-center px-7 py-3.5 bg-white text-orange-700 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg group">
-                            <span>Lihat Koleksi</span>
-                            <svg class="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           class="inline-flex items-center px-6 py-3 bg-white text-orange-800 font-medium rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            Lihat Koleksi
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
                         </a>
                     </div>
                     
-                    <!-- Right: Product Showcase -->
-                    <div class="relative flex items-center justify-center p-8" data-aos="fade-left" data-aos-delay="300">
-                        @if(isset($bestSellingProduct) && $bestSellingProduct)
-                            <div class="relative group">
-                                <!-- Product Card -->
-                                <div class="w-72 h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden bg-white shadow-2xl transform group-hover:scale-105 transition-all duration-500">
-                                    @if($bestSellingProduct->image && file_exists(storage_path('app/public/' . $bestSellingProduct->image)))
-                                        <img src="{{ asset('storage/' . $bestSellingProduct->image) }}" 
-                                            alt="{{ $bestSellingProduct->name }}" 
-                                            class="w-full h-full object-cover" />
-                                    @else
-                                        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                                            <div class="text-center p-4">
-                                                <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                                </svg>
-                                                <span class="text-gray-600 font-medium">{{ Str::limit($bestSellingProduct->name, 25) }}</span>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                                
-                                <!-- Price Badge -->
-                                <div class="absolute -bottom-4 -right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-xl border border-orange-100">
-                                    <div class="text-xs font-medium text-orange-600 uppercase tracking-wide">Best Seller</div>
-                                    <div class="text-2xl font-bold text-orange-800">{{'Rp ' . number_format($bestSellingProduct->price, 0, ',', '.')  }}</div>
-                                </div>
-                            </div>
-                        @else
-                            <!-- Fallback: Show Bricklayer SVG instead -->
-                            <div class="w-72 h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                                <img src="{{ asset('images/Bricklayer-pana.svg') }}" 
-                                     alt="Construction Illustration" 
-                                     class="w-48 h-48 object-contain opacity-80">
-                            </div>
-                        @endif
-                    </div>
+                    <div class="relative h-full flex items-center justify-center" data-aos="fade-left">
+                        <div class="relative w-full max-w-sm mx-auto my-8">
+                            <!-- Glow Effect -->
+                            <div class="absolute inset-0 bg-white rounded-full blur-3xl opacity-20"></div>
+                            
+                            <!-- SVG Illustration -->
+                            <img src="{{ asset('images/Construction truck-pana.svg') }}" 
+                                 alt="Koleksi Terbaik Fixpoint" 
+                                 class="relative w-full h-auto drop-shadow-2xl animate-float">
+                        </div>
+                    </div>                                     
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- New Arrivals with Floating Cards -->
     <section class="py-24 bg-gray-50">
@@ -932,83 +901,67 @@
 </section>
 
     <!-- CTA Section with Wave Background -->
-    <section class="relative overflow-hidden min-h-[550px] py-20">
+    <section class="relative overflow-hidden pt-24 pb-32 bg-gradient-to-br from-orange-600 to-amber-600">
         <!-- Wave Background -->
-        <div class="ocean">
+        <div class="ocean opacity-30">
             <div class="wave"></div>
             <div class="wave"></div>
         </div>
         
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left: CRM SVG Illustration -->
-                <div class="hidden lg:flex items-center justify-center" data-aos="fade-right" data-aos-delay="100">
-                    <div class="relative">
-                        <!-- Glassmorphism Background -->
-                        <div class="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl transform -rotate-3"></div>
-                        <img src="{{ asset('images/Customer relationship management-bro.svg') }}" 
-                             alt="Customer Relationship" 
-                             class="relative w-80 h-80 object-contain drop-shadow-xl transform hover:scale-105 transition-transform duration-500 p-6">
+                <!-- Left Content: Text & Form -->
+                <div class="text-center lg:text-left z-10" data-aos="fade-right">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                        Siap Memulai <br/>Proyek Bangunan Anda?
+                    </h2>
+                    <p class="mt-4 text-xl text-orange-100 mb-8">
+                        Dapatkan diskon 15% untuk pembelian pertama dan info promo eksklusif dengan mendaftar newsletter kami.
+                    </p>
+                    
+                    <div class="w-full max-w-md mx-auto lg:mx-0">
+                        <form action="{{ route('newsletter.subscribe') }}" method="POST" id="newsletter-form" class="flex flex-col sm:flex-row gap-3">
+                            @csrf
+                            <div class="flex-grow">
+                                <label for="email-address" class="sr-only">Alamat Email</label>
+                                <input id="email-address" name="email" type="email" autocomplete="email" required 
+                                       class="w-full px-5 py-4 border-0 rounded-xl shadow-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-orange-600 transition-all duration-300"
+                                       placeholder="Masukkan email Anda">
+                            </div>
+                            <button type="submit" id="newsletter-submit"
+                                   class="flex-shrink-0 px-8 py-4 bg-white text-orange-700 font-bold rounded-xl hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-orange-600 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                                Daftar
+                            </button>
+                        </form>
+                        
+                        <div id="confirm-subscription" class="hidden mt-4 bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl border border-white border-opacity-30">
+                            <p class="text-white mb-3 font-medium" id="confirm-message"></p>
+                            <div class="flex space-x-3">
+                                <button id="confirm-yes" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors shadow-md">Ya, Saya Ingin</button>
+                                <button id="confirm-no" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-md">Tidak</button>
+                            </div>
+                        </div>
+                        <div id="newsletter-message" class="mt-3 text-sm text-white font-medium hidden bg-black bg-opacity-20 p-2 rounded-lg inline-block"></div>
                     </div>
                 </div>
                 
-                <!-- Right: Newsletter Content -->
-                <div class="text-center lg:text-left" data-aos="fade-up" data-aos-delay="200">
-                    <span class="inline-block px-4 py-1.5 bg-white/20 text-white rounded-full text-sm font-semibold mb-4 backdrop-blur-sm border border-white/10">
-                        📬 NEWSLETTER
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
-                        Siap Memulai<br><span class="text-orange-200">Proyek Anda?</span>
-                    </h2>
-                    <p class="mt-4 max-w-lg text-lg text-orange-100/90 mx-auto lg:mx-0">
-                        Dapatkan diskon 15% untuk pembelian pertama dengan mendaftar newsletter kami
-                    </p>
-                    
-                    <div class="mt-8">
-                        <div class="w-full max-w-md mx-auto lg:mx-0">
-                            <!-- Newsletter Form Card -->
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl">
-                                <form action="{{ route('newsletter.subscribe') }}" method="POST" id="newsletter-form" class="space-y-4">
-                                    @csrf
-                                    <div>
-                                        <label for="email-address" class="sr-only">Alamat Email</label>
-                                        <input id="email-address" name="email" type="email" autocomplete="email" required 
-                                               class="w-full px-5 py-4 border-0 placeholder-gray-400 focus:ring-2 focus:ring-orange-300 rounded-xl shadow-lg transition-all duration-300 focus:scale-[1.02] text-gray-800"
-                                               placeholder="Masukkan email Anda">
-                                    </div>
-                                    <button type="submit" id="newsletter-submit"
-                                           class="w-full px-6 py-4 bg-gradient-to-r from-orange-600 to-amber-500 text-white font-semibold rounded-xl hover:from-orange-700 hover:to-amber-600 focus:outline-none shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-                                        <span class="flex items-center justify-center">
-                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                            </svg>
-                                            Daftar Sekarang
-                                        </span>
-                                    </button>
-                                </form>
-                                
-                                <div id="confirm-subscription" class="hidden mt-4 bg-white/20 backdrop-blur-sm p-4 rounded-xl">
-                                    <p class="text-white mb-3" id="confirm-message"></p>
-                                    <div class="flex justify-center space-x-3">
-                                        <button id="confirm-yes" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">Ya, Saya Ingin</button>
-                                        <button id="confirm-no" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">Tidak</button>
-                                    </div>
-                                </div>
-                                <div id="newsletter-message" class="mt-3 text-sm text-white hidden"></div>
-                            </div>
-                            
-                            <p class="mt-4 text-sm text-orange-100/70 text-center lg:text-left">
-                                🔒 Kami menjaga privasi Anda. Tidak ada spam.
-                            </p>
-                        </div>
+                <!-- Right Content: SVG Illustration -->
+                <div class="hidden lg:flex justify-center items-center z-10" data-aos="fade-left">
+                    <div class="relative w-full max-w-md">
+                        <!-- Decorative Circle -->
+                        <div class="absolute inset-0 bg-white rounded-full opacity-10 blur-3xl transform scale-110"></div>
+                        
+                        <img src="{{ asset('images/Customer relationship management-bro.svg') }}" 
+                             alt="Newsletter Fixpoint" 
+                             class="relative w-full h-auto drop-shadow-2xl animate-float">
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Bottom Wave -->
-        <div class="absolute bottom-0 left-0 right-0 overflow-hidden">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="absolute bottom-0 w-full h-20">
+        <div class="absolute bottom-0 left-0 right-0 overflow-hidden translate-y-1">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-[calc(100%+1.3px)] h-[60px] sm:h-[100px]">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-current text-white"></path>
             </svg>
         </div>

@@ -405,7 +405,7 @@
                                 </svg>
                                 <div>
                                     <p class="font-medium text-gray-700">Area Jangkauan Pengiriman:</p>
-                                    <p class="mt-1">Jakarta Selatan, Jakarta Pusat, Jakarta Timur, Depok, Tangerang Selatan</p>
+                                    <p class="mt-1">Bangkalan dan sekitarnya</p>
                                 </div>
                             </div>
                         </div>
